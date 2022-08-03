@@ -20,6 +20,6 @@ driver.find_element_by_id('i0118').send_keys('socam2021!3')
 driver.find_element_by_id('idSIButton9').click()
 time.sleep(1)
 driver.find_element_by_id('idBtn_Back').click()
-time.sleep(5)
+time.sleep(6)
 first_tab = driver.window_handles[0]
 driver.switch_to.window(window_name=first_tab )
