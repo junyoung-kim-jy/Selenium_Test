@@ -21,8 +21,6 @@ driver.find_element_by_id('idSIButton9').click()
 time.sleep(1)
 driver.find_element_by_id('i0118').send_keys('softcamp2020!')
 driver.find_element_by_id('idSIButton9').click()
-time.sleep(2)
-driver.find_element_by_id('idBtn_Back').click()
 time.sleep(6)
 #SHIELDrive 창으로 이동
 first_tab = driver.window_handles[0]
