@@ -7,13 +7,28 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    pip install selenium
+    # 기타 필요한 패키지 설치
+
+    # Chrome 브라우저의 헤드리스 모드 설정
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
+
+    options = Options()
+    options.add_argument('--headless')
+    options.add_argument('--disable-gpu')
+    driver = webdriver.Chrome(options=options)
+
+    # Azure DevOps Repos에서 셀레니움 코드 가져오기
+    with open('https://Security365@dev.azure.com/Security365/Test%20Project/_git/Selenium_Test/Selenium_Test_Run.py', 'r') as file:
+        code = file.read()
+
+    # 셀레니움 코드 실행
+    exec(code)
+    # 셀레니움 작업이 완료되면 브라우저 종료
+    driver.quit()
+  displayName: 'Run Selenium Headless'
