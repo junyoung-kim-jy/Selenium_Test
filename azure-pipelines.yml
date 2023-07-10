@@ -1,34 +1,30 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
 
 trigger:
 - main
 
 pool:
-  vmImage: windows-latest
+  vmImage: 'ubuntu-latest'
 
 steps:
+- checkout: self
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.10.4'
+    addToPath: true
+
+# - script: |
+#   sudo apt-get update
+#    sudo apt-get install -y chromium-chromedriver
+#   sudo chmod +x /usr/lib/chromium-browser/chromedriver
+# displayName: 'Install Chromium WebDriver'
+
 - script: |
-    pip install selenium
-    # 기타 필요한 패키지 설치
-
-    # Chrome 브라우저의 헤드리스 모드 설정
-    from selenium import webdriver
-    from selenium.webdriver.chrome.options import Options
-
-    options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--disable-gpu')
-    driver = webdriver.Chrome(options=options)
-
-    # Azure DevOps Repos에서 셀레니움 코드 가져오기
-    with open('https://Security365@dev.azure.com/Security365/Test%20Project/_git/Selenium_Test/Selenium_Test_Run.py', 'r') as file:
-        code = file.read()
-
-    # 셀레니움 코드 실행
-    exec(code)
-    # 셀레니움 작업이 완료되면 브라우저 종료
-    driver.quit()
+    pip install selenium==4.1.4
+    pip install chromedriver-autoinstaller
+    python Selenium_Test_Run.py
   displayName: 'Run Selenium Headless'
+
