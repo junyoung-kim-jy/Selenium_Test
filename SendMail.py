@@ -6,10 +6,10 @@ from email.mime.image import MIMEImage
 def send_email(subject, body, screenshot_path=None):
     smtp_server = '10.10.200.27'  # SMTP 서버 주소
     smtp_port = 25  # SMTP 서버 포트
-    smtp_username = 'noreply@support.security365.com'  # SMTP 계정 아이디
-    smtp_password = 'socam2021@'  # SMTP 계정 패스워드
-    from_email = 'noreply@support.security365.com'  # 보내는 사람 이메일 주소
-    to_email = 'junyoung.kim@softcamp.co.kr'  # 받는 사람 이메일 주소
+    smtp_username = ''  # SMTP 계정 아이디
+    smtp_password = ''  # SMTP 계정 패스워드
+    from_email = ''  # 보내는 사람 이메일 주소
+    to_email = ''  # 받는 사람 이메일 주소
 
     msg = MIMEMultipart()  # 이메일 내용
     msg['Subject'] = subject  # 이메일 제목
