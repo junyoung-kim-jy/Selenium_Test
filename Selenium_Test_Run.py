@@ -38,7 +38,7 @@ driver.implicitly_wait(10)
 '''
 #Portal 로그인
 driver = webdriver.Chrome(options=options)
-url = 'https://staportal.security365.com'
+url = 'your test page url'
 driver.get(url)
 driver.implicitly_wait(10)
 #MS로 로그인하기 버튼 클릭
@@ -62,10 +62,10 @@ except Exception as e:
     #SendMail.send_email('로그인 UI 테스트 결과', '테스트 실패' + f'\n예외가 발생했습니다: {str(e)}', 'screenshot.png')
     driver.quit()
 time.sleep(2)    
-driver.find_element_by_xpath('//*[@id="i0116"]').send_keys('iadmin@softcamp3.onmicrosoft.com')
+driver.find_element_by_xpath('//*[@id="i0116"]').send_keys('your ID')
 driver.find_element_by_id('idSIButton9').click()
 time.sleep(2)
-driver.find_element_by_xpath('//*[@id="i0118"]').send_keys('socam2021!3')
+driver.find_element_by_xpath('//*[@id="i0118"]').send_keys('your PW')
 driver.find_element_by_xpath('//*[@id="idSIButton9"]').click()
 time.sleep(3)
 driver.find_element_by_xpath('//*[@id="idBtn_Back"]').click()
@@ -75,10 +75,10 @@ first_tab = driver.window_handles[0]
 driver.switch_to.window(window_name=first_tab)
 #테스트 성공/실패 여부 체크(로그)
 time.sleep(3)
-if driver.current_url == "https://staportal.security365.com/admin":
+if driver.current_url == "your login page url":
     logging.info("Portal 로그인 테스트 성공")
     #SendMail.send_email('Portal 로그인 테스트 결과', '테스트 성공')
-elif driver.current_url == "https://staportal.security365.com/bridge/error?type=tenant":
+elif driver.current_url == "if URL":
     logging.error("Portal 로그인 테스트 실패")
     driver.save_screenshot('screenshot.png')
     #SendMail.send_email('Portal 로그인 테스트 결과', '테스트 실패', 'screenshot.png')
